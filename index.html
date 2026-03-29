@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root { --main-bg: #121212; --accent: #0088cc; --text: #ffffff; }
+        body { background: var(--main-bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        .screen { display: none; }
+        .active { display: block; }
+        
+        /* Профиль стилі */
+        .profile-card { background: #1e1e1e; padding: 15px; border-radius: 15px; margin-bottom: 20px; }
+        .xp-bar { background: #333; height: 10px; border-radius: 5px; margin: 10px 0; overflow: hidden; }
+        .xp-fill { background: var(--accent); height: 100%; width: 40%; }
+        
+        /* Персонаж */
+        .character { font-size: 80px; margin: 30px 0; }
+        
+        /* Батырмалар */
+        .btn-main { background: #d32f2f; color: white; padding: 20px; border-radius: 12px; font-weight: bold; width: 100%; border: none; font-size: 18px; cursor: pointer; box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4); }
+        .category-btn { background: #252525; padding: 15px; margin: 10px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid #333; }
+    </style>
+</head>
+<body>
+
+    <div id="home-screen" class="screen active">
+        <div class="profile-card">
+            <div>👤 Yernur_777</div>
+            <div style="font-size: 12px; color: #aaa;">Статус: Қарапайым Студент (LVL 1)</div>
+            <div class="xp-bar"><div class="xp-fill"></div></div>
+            <div style="font-size: 10px;">XP: 40/100</div>
+        </div>
+
+        <div class="character">🧍‍♂️</div>
+
+        <button class="btn-main" onclick="showScreen('arena-screen')">🔴 АРЕНАҒА КІРУ</button>
+        
+        <div style="margin-top: 20px; display: flex; justify-content: space-around; font-size: 12px; color: #0088cc;">
+            <span>🏆 Рейтинг</span> | <span>🎒 Скиндер</span>
+        </div>
+    </div>
+
+    <div id="arena-screen" class="screen">
+        <h2 style="color: #f44336;">⚔️ ҚАЙ ЖЕРДЕ АМАН ҚАЛАСЫҢ?</h2>
+        
+        <div class="category-btn" onclick="startLevel('TOY')"><span>🥩 ТОЙ-SURVIVAL</span> <span>➡️</span></div>
+        <div class="category-btn" onclick="startLevel('QAIYN')"><span>🧧 QAIYN-GAMES</span> <span>➡️</span></div>
+        <div class="category-btn" onclick="startLevel('KASPI')"><span>📱 KASPI-AVOID</span> <span>➡️</span></div>
+        <div class="category-btn" onclick="startLevel('UYAT')"><span>👁 UYAT-POLICE</span> <span>➡️</span></div>
+        
+        <button onclick="showScreen('home-screen')" style="background:none; color: gray; border:none; margin-top:20px;">⬅️ Артқа</button>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function startLevel(cat) {
+            tg.HapticFeedback.impactOccurred('medium');
+            alert(cat + " деңгейі жүктелуде... (Қазір Бэкендпен жалғаймыз)");
+        }
+    </script>
+</body>
+</html>
